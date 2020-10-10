@@ -11,13 +11,13 @@ module.exports = {
 		}
 		
 		const salt = bcrypt.genSaltSync(saltRounds);
-		const hash = bcrypt.hashSync(password,salt);
+	/* 	const hash = bcrypt.hashSync(password,salt); */
 
 		try {
 			const data = await db('users').insert({
 				name: name,
 				email: email,
-				hash: hash
+				hash: 123
 			})
 			return response.json('teste de dentro do register controller')
 		} catch (error) {
