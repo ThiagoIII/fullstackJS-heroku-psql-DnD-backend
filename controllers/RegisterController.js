@@ -5,6 +5,7 @@ const saltRounds = 10;
 module.exports = {
 
 	async index(request, response) {
+		console.log('dentro do server eu espero')
 		let { name, email, password } = request.body
 		if (!name || !email || !password) {
 			return response.status(400).json('incorrect form submission, some input is empty');
