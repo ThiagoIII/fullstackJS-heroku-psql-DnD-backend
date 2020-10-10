@@ -7,7 +7,7 @@ module.exports = {
 	async index(request, response) {
 		let { name, email, password } = request.body
 		if (!name || !email || !password) {
-			return response.status(400).json('incorrect form submission, some input is empty');
+			return response
 		}
 		
 		const salt = bcrypt.genSaltSync(saltRounds);
@@ -15,11 +15,11 @@ module.exports = {
 
 		try {
 			const data = await db('users').insert({
-				name,
-				email,
-				hash
+				name: name,
+				email: email,
+				hash: hash
 			})
-			return response.json(data)
+			return response.json('teste de dentro do register controller')
 		} catch (error) {
 			return response
 		}
