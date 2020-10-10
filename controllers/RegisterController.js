@@ -14,13 +14,17 @@ module.exports = {
 
 
 		try {
-			const data = await db('users').insert({
+			let newUser = await db('users')
+			.insert({
 				name: name,
 				email: email,
 				hash: hash,
 				joined: new Date()
-			}) 
-			return response.json(data)
+			})
+			.select('*')
+			.from('users')
+			.where({email: email})
+			return response.json(newUser)
 		} catch (error) {
 			return response
 		}  
