@@ -28,7 +28,7 @@ module.exports = {
 		} catch (error) {
 			return response
 		} */
-	} 
+	
 	
 }
 };
