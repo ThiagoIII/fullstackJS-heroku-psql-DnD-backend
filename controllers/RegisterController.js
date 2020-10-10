@@ -5,15 +5,20 @@ const saltRounds = 10;
 module.exports = {
 
 	async index(request, response) {
-		/* let { name, email, password } = request.body
+		let { name, email, password } = request.body
 		if (!name || !email || !password) {
 			return response
 		}
-		
-		const salt = bcrypt.genSaltSync(saltRounds);
-		const hash = bcrypt.hashSync(password,salt); 
+		let data = {
+			name,
+			email,
+			password
+		}
+		return response.json(data)
+		/* const salt = bcrypt.genSaltSync(saltRounds);
+		const hash = bcrypt.hashSync(password,salt);  */
 
-		try {
+		/* try {
 			const data = await db('users').insert({
 				name: name,
 				email: email,
@@ -22,8 +27,8 @@ module.exports = {
 			return response.json('teste de dentro do register controller')
 		} catch (error) {
 			return response
-		}
-	} */
-	return response.json('tudo certo')
+		} */
+	} 
+	
 }
 };
