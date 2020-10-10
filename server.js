@@ -5,7 +5,7 @@ const cors = require('cors')
 const app = express()
 
 
-app.use(cors())
+app.use(cors({origin: 'https://salty-thicket-65996.herokuapp.com/'}))
 app.use(express.json());
 app.use(routes)
 
