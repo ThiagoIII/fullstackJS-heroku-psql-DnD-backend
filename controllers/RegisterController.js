@@ -11,7 +11,7 @@ module.exports = {
 		}
 		
 		const salt = bcrypt.genSaltSync(saltRounds);
-	 	const hash = bcrypt.hashSync(password,salt); 
+		const hash = bcrypt.hashSync(password,salt); 
 
 		try {
 			const data = await db('users').insert({
@@ -25,4 +25,5 @@ module.exports = {
 		}
 	} */
 	return response.json('tudo certo')
+}
 };
