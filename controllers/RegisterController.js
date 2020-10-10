@@ -11,15 +11,15 @@ module.exports = {
 		}
 		const salt = bcrypt.genSaltSync(saltRounds);
 		const hash = bcrypt.hashSync(password,salt);
-/* 		let data = {
+		let data = {
 			name,
 			email,
 			hash
 		}
-		return response.json(data) */
+		return response.json(data) 
 		
 
-		try {
+	/* 	try {
 			const data = await db('users').insert({
 				name: name,
 				email: email,
@@ -28,7 +28,7 @@ module.exports = {
 			return response.json(data)
 		} catch (error) {
 			return response
-		} 
+		}  */
 	
 	
 }
