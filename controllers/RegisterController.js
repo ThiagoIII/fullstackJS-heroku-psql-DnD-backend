@@ -21,7 +21,7 @@ module.exports = {
 			})
 			return response.json(data)
 		} catch (error) {
-			return response.status(400).json('unable to register', error)
+			return response
 		}
 	}
 };
