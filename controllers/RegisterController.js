@@ -9,25 +9,26 @@ module.exports = {
 		if (!name || !email || !password) {
 			return response
 		}
-		let data = {
+		const salt = bcrypt.genSaltSync(saltRounds);
+		const hash = bcrypt.hashSync(password,salt);
+/* 		let data = {
 			name,
 			email,
-			password
+			hash
 		}
-		return response.json(data)
-		/* const salt = bcrypt.genSaltSync(saltRounds);
-		const hash = bcrypt.hashSync(password,salt);  */
+		return response.json(data) */
+		
 
-		/* try {
+		try {
 			const data = await db('users').insert({
 				name: name,
 				email: email,
-				hash: 123
+				hash: hash
 			})
-			return response.json('teste de dentro do register controller')
+			return response.json(data)
 		} catch (error) {
 			return response
-		} */
+		} 
 	
 	
 }
