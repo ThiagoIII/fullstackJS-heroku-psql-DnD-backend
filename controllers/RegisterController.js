@@ -19,13 +19,14 @@ module.exports = {
 		return response.json(data)  */
 		
 
-	 	try {
-			/* const data = await db('users').insert({
+		try {
+			const data = await db('users').insert({
 				name: name,
 				email: email,
-				hash: hash
-			}) */
-			return response.json('dentro do try catch')
+				hash: hash,
+				joined: new Date()
+			}) 
+			return response.json('dentro do try catcfh com conexao normal pra db')
 		} catch (error) {
 			return response
 		}  
