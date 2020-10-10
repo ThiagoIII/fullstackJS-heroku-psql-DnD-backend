@@ -21,7 +21,7 @@ module.exports = {
 				hash: hash,
 				joined: new Date()
 			})
-			let newUser = await select('*')
+			let newUser = await db.select('*')
 			.from('users')
 			.where({email: email})
 			return response.json(newUser)
