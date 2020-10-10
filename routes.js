@@ -9,7 +9,7 @@ const RegisterController = require('./controllers/RegisterController');
 const router = express.Router()
 
 router.get('/', HomeController.index )
-router.get('/register', (req, res) => {	res.send('register')})
+router.get('/registerUser', (req, res) => {	res.send('register')})
 router.get('/user', (req, res) => {	res.send('user')})
 router.get('/discoverCharsAndAdvs', DiscoverCharsAndAdvs.index)
 router.get('/fetchUserData', FetchUserDataController.index)
