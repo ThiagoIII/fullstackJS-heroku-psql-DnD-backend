@@ -11,13 +11,7 @@ module.exports = {
 		}
 		const salt = bcrypt.genSaltSync(saltRounds);
 		const hash = bcrypt.hashSync(password,salt);
-	/* 	let data = {
-			name,
-			email,
-			hash
-		}
-		return response.json(data)  */
-		
+
 
 		try {
 			const data = await db('users').insert({
@@ -26,7 +20,7 @@ module.exports = {
 				hash: hash,
 				joined: new Date()
 			}) 
-			return response.json('dentro do try catcfh com conexao normal pra db')
+			return response.json(data)
 		} catch (error) {
 			return response
 		}  
