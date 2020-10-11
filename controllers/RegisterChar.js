@@ -5,7 +5,7 @@ module.exports = {
 	async index(request, response) {
 		let { charName, charHistory, name } = request.body
 		try {
-			const data = await db(`${name}Characters`).insert({
+			const data = await db(`Characters`).insert({
 				charName,
 				charHistory
 			})

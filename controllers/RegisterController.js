@@ -26,7 +26,7 @@ module.exports = {
 			.where({email: email})
 			return response.json(newUser)
 		} catch (error) {
-			return response
+			return  response.status(400).json(`Not possible to register: ${error}`) 
 		}  
 	
 	
