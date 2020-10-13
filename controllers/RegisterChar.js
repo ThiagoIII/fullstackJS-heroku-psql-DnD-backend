@@ -11,7 +11,7 @@ module.exports = {
 				charHistory
 			})
 			console.log(dataRegister.config.data)
-			return response.json(dataRegister.config.data)
+			return response.json(dataRegister)
 		} catch (error) {
 			return response
 		}
