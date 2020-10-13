@@ -17,6 +17,7 @@ router.post('/fetchUserData', FetchUserDataController.index)
 router.post('/register', RegisterController.index)
 router.post('/login', LoginController.index)
 router.post('/registerChar', RegisterChar.index)
+router.post('/registerQuest', RegisterQuest.index)
 
 
 module.exports = router
