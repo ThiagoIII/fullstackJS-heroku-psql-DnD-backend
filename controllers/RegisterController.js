@@ -11,19 +11,17 @@ module.exports = {
 		}
 		const salt = bcrypt.genSaltSync(saltRounds);
 		const hash = bcrypt.hashSync(password,salt);
-
-
 		try {
 			await db('users')
-			.insert({
-				name: name,
-				email: email,
-				hash: hash,
-				joined: new Date()
-			})
+				.insert({
+					name: name,
+					email: email,
+					hash: hash,
+					joined: new Date()
+				})
 			let newUser = await db.select('*')
-			.from('users')
-			.where({email: email})
+				.from('users')
+				.where({email: email})
 			return response.json(newUser)
 		} catch (error) {
 			return  response.status(400).json(`Not possible to register: ${error}`) 

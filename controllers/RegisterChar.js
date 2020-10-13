@@ -4,16 +4,22 @@ module.exports = {
 
 	async index(request, response) {
 		let { charName, charHistory, id } = request.body
-		try {
-			const dataRegister = await db(`chars`).insert({
-				id,
-				charName,
-				charHistory
-			})
-			console.log(dataRegister.config.data)
-			return response.json(dataRegister)
-		} catch (error) {
+		if (!id || !charName || !charHistory) {
 			return response
+		}
+		try {
+			await db(`chars`)
+				.insert({
+					id: id,
+					charName: charName,
+					charHistory: charHistory
+				})
+			let newChar = await db.select('*')
+				.from('chars')
+				.where({charHistory: charHistory})	
+			return response.json(newChar)
+		} catch (error) {
+			return response.status(400).json(`Not possible to register: ${error}`) 
 		}
 	}
 };
