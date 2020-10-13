@@ -11,8 +11,8 @@ module.exports = {
 			await db(`chars`)
 				.insert({
 					id: id,
-					charName: charName,
-					charHistory: charHistory
+					charname: charName,
+					charhistory: charHistory
 				})
 			let newChar = await db.select('*')
 				.from('chars')
