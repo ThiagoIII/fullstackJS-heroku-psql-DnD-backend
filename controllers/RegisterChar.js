@@ -16,7 +16,7 @@ module.exports = {
 				})
 			let newChar = await db.select('*')
 				.from('chars')
-				.where({charHistory: charHistory})	
+				.where({charhistory: charHistory})	
 			return response.json(newChar)
 		} catch (error) {
 			return response.status(400).json(`Not possible to register: ${error}`) 
