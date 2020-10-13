@@ -4,6 +4,7 @@ const FetchUserDataController = require('./controllers/FetchUserDataController')
 const HomeController = require('./controllers/HomeController');
 const LoginController = require('./controllers/LoginController');
 const RegisterChar = require('./controllers/RegisterChar');
+const RegisterQuest = require('./controllers/RegisterQuestController');
 const RegisterController = require('./controllers/RegisterController');
 
 const router = express.Router()
