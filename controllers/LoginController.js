@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
 
 	async index(request, response) {
-		let { password } = request.body
+		let { name,  password } = request.body
 		try {
 			const dataLogin = await db.select('*').from('users').where({name: name})
 		/* 	const hash1 = await dataLogin[0].hash
