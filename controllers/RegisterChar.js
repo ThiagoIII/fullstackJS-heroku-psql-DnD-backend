@@ -5,11 +5,11 @@ module.exports = {
 	async index(request, response) {
 		let { charName, charHistory, name } = request.body
 		try {
-			const data = await db(`chars`).insert({
+			const dataRegister = await db(`chars`).insert({
 				charName,
 				charHistory
 			})
-			return response.json(data.config.data)
+			return response.json(dataRegister.config.data)
 		} catch (error) {
 			return response
 		}

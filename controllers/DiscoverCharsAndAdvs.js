@@ -4,8 +4,8 @@ module.exports = {
 
 	async index(request, response) {
 		try {
-			const data = await db.select('*').from(`charsAndAdvs`)
-			return response.json(data)
+			const dataCharsAndAdvs = await db.select('*').from(`charsAndAdvs`)
+			return response.json(dataCharsAndAdvs)
 		} catch (error) {
 			return response
 		}
