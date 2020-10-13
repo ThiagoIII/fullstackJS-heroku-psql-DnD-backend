@@ -8,11 +8,10 @@ module.exports = {
 		let { name,  password } = request.body
 		try {
 			const dataLogin = await db.select('*').from('users').where({name: name})
-			const obj = dataLogin[0].json()
-			const obj2 = obj.data
+			const obj = dataLogin[0].data[0].hash
 		/* 	const isValid = bcrypt.compareSync(password, hash1) 
 			isValid ? response.json(dataLogin.data[0]) : response.status(400).json('wrong password')  */
-			return response.json(obj2)
+			return response.json(obj)
 			
 		} catch (error) {
 			return response
