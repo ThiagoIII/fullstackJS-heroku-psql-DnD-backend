@@ -7,7 +7,8 @@ module.exports = {
 		try {
 			const chars = await db.select('*').from(`chars`).where({id: id})
 			const quests = await db.select('*').from(`quests`).where({id: id})
-			return response.json(chars)
+			const charsAndQuests = [chars, quests]
+			return response.json(charsAndQuests)
 		} catch (error) {
 			return response
 		}
