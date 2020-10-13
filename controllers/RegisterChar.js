@@ -3,9 +3,10 @@ const db = require('../database/connection')
 module.exports = {
 
 	async index(request, response) {
-		let { charName, charHistory, name } = request.body
+		let { charName, charHistory, id } = request.body
 		try {
 			const dataRegister = await db(`chars`).insert({
+				id,
 				charName,
 				charHistory
 			})
