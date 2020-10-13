@@ -7,9 +7,9 @@ module.exports = {
 	async index(request, response) {
 		let {  password } = request.body
 		try {
-			const data = await db.select('*').from('users').where({id})
-			const hash = await data[0].password
-			const isValid = bcrypt.compareSync(password, hash)
+			const data = await db.select('*').from('users').where({name})
+			const hash1 = await data[0].hash
+			const isValid = bcrypt.compareSync(password, hash1)
 			isValid ? response.json(data) : response.status(400).json('wrong password')
 			
 		} catch (error) {

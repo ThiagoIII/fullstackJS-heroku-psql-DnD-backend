@@ -3,9 +3,10 @@ const db = require('../database/connection')
 module.exports = {
 
 	async index(request, response) {
-		const { name } = request.query
+		const { id } = request.query
 		try {
-			const data = await db.select('*').from(`${name}Characters`)
+			const chars = await db.select('*').from(`chars`).where({id = id})
+			const quests = await db.select('*').from(`quests`).where({id = id})
 			return response.json(data)
 		} catch (error) {
 			return response
