@@ -3,20 +3,20 @@ const db = require('../database/connection')
 module.exports = {
 
 	async index(request, response) {
-		let { charName, charHistory, id } = request.body
-		if (!id || !charName || !charHistory) {
-			return response
+		let { charname, charhistory, id } = request.body
+		if (!id || !charname || !charhistory) {
+			return 'error, some of the inputs are empty' 
 		}
 		try {
 			await db(`chars`)
 				.insert({
 					id: id,
-					charname: charName,
-					charhistory: charHistory
+					charname: charname,
+					charhistory: charhistory
 				})
 			let newChar = await db.select('*')
 				.from('chars')
-				.where({charhistory: charHistory})	
+				.where({charhistory: charhistory})	
 			return response.json(newChar)
 		} catch (error) {
 			return response.status(400).json(`Not possible to register: ${error}`) 
