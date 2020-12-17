@@ -3,9 +3,9 @@ const db = require('../database/connection')
 module.exports = {
 
 	async index(request, response) {
-		const id = request.body
-		console.log(id)
-		if(id){
+		const  { id } = request.body
+		console.log('ID SENT TO SERVER =======>>>>>>>>>>>',id)
+		if(id !== {} && id !== null && id !== undefined){
 			try {
 				const userExist = await db.select('*').from(`users`).where({id: id})
 				if(userExist.length > 0){
