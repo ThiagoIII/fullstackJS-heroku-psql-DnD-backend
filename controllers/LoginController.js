@@ -11,14 +11,19 @@ module.exports = {
 		}
 		try {
 			const dataLogin = await db.select('*').from('users').where({name: name})
-			console.log('======= FROM THE SERVER =====' ,dataLogin)
-			const hash1 = dataLogin[0].hash
-			const isValid = bcrypt.compareSync(password, hash1) 
-			isValid 
-				? response.json({id , name } = dataLogin[0]) 
-				: response.status(400).json('wrong password or user')  
+			if(dataLogin.length > 0){
+				const hash1 = dataLogin[0].hash
+				const isValid = bcrypt.compareSync(password, hash1) 
+				isValid 
+					? response.json({id , name } = dataLogin[0]) 
+					: response.status(400).json('wrong password or user')  
+			} else {
+				return response.status(400).json('user not found')
+			}
+			
 		} catch (error) {
-			return response
+			console.log('something wrong with the processing of the data inside the server, it could be with de db or with the code processing the data returned from the db, I will log here the db response and the error so you can check whats happening and also ------> :', dataLogin , error)
+			return response.status(400).json('something wrong with the processing of the data inside the server, it could be with de db or with the code processing the data returned from the db, I will log here the db response and the error so you can check whats happening and also ------> :', dataLogin , error)
 		}
 	}
 };
