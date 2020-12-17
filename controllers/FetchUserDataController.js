@@ -3,14 +3,25 @@ const db = require('../database/connection')
 module.exports = {
 
 	async index(request, response) {
-		const { id } = request.body
-		try {
-			const chars = await db.select('*').from(`chars`).where({id: id})
-			const quests = await db.select('*').from(`quests`).where({id: id})
-			const charsAndQuests = [chars, quests]
-			return response.json(charsAndQuests)
-		} catch (error) {
-			return response
+		const id = request.body
+		console.log(id)
+		if(id){
+			try {
+				const userExist = await db.select('*').from(`users`).where({id: id})
+				if(userExist.length > 0){
+					const chars = await db.select('*').from(`chars`).where({id: id}) //return an array of objects or empty if nothing is there
+					const quests = await db.select('*').from(`quests`).where({id: id}) //same as the chars one
+					const charsAndQuests = [chars, quests] //part of my crazy "logic"
+					return response.status(200).json(charsAndQuests)
+				} else {
+					return response.status(400).json('It appears that there is no user with that ID. Huh ?!? Crazy right ? I am sure that something broke but already its good again! Would you be kind enough to try again, please ? Thank you very mushroom (sounds like much, get it ? haha)!')
+				}
+			} catch (error) {
+				return response.status(400).json('Something went wrong fetching the info from the database or with the processing of data. Please try again', error)
+			}
+		} else {
+			return response.status(400).json('Uh oh! It seems that we maybe broke something, we could not sent your ID to the database, would, please, try again ? Thanks! You are the best!')
 		}
+		
 	}
 };

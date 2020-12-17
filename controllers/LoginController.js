@@ -10,16 +10,17 @@ module.exports = {
 			return response.status(400).json('Some of the inputs are empty')
 		}
 		try {
-			const dataLogin = await db.select('*').from('users').where({name: name})
+			const dataLogin = await db.select('*').from('users').where({name: name}) //returns a object with id, name, email, hash and joined date.
 			if(dataLogin.length > 0){
-				console.log('datalogin ===============' , dataLogin)
 				const hash1 = dataLogin[0].hash
 				const isValid = bcrypt.compareSync(password, hash1) 
-				isValid 
-					? response.json({id , name } = dataLogin[0]) 
-					: response.status(400).json('Password wrong, I will let it slip this time hm!')  
+				if (isValid) {
+					return  response.status(200).json({id , name } = dataLogin[0]) 
+				} else {
+					return response.status(400).json('Wrong password, I will let it slip this time hm! Now check it really carefully and remember to look at your surroundings when inserting your password!') 
+				}
 			} else {
-				return response.status(400).json('user not found')
+				return response.status(400).json('Sorry but we could not find your username in our database, maybe you made a mistake, perhaps mispelled it ? Would you be so kind to, please, try again?')
 			}
 			
 		} catch (error) {

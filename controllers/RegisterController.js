@@ -7,11 +7,11 @@ module.exports = {
 	async index(request, response) {
 		let { name, email, password } = request.body
 		if (!name || !email || !password) {
-			return response.status(400).json('Some of the inputs are empty') 
+			return response.status(400).json('Some of the inputs are empty, please, re-check and try again!') 
 		}
 		let newUser = await db.select('*').from('users').where({name: name})
 		if(newUser.length > 0) {
-			return response.status(400).json('Name already exists')
+			return response.status(400).json('That name already exists in our database! We are so sorry but, please, try another! We are sure that you will make it!!')
 		}
 		const salt = bcrypt.genSaltSync(saltRounds);
 		const hash = bcrypt.hashSync(password,salt);
