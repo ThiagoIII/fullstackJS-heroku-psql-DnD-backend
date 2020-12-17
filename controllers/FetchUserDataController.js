@@ -3,8 +3,8 @@ const db = require('../database/connection')
 module.exports = {
 
 	async index(request, response) {
-		//const  { id } = request.body
-		console.log('ID SENT TO SERVER =======>>>>>>>>>>>', request)
+		const  { id } = request.body
+		console.log('ID SENT TO SERVER =======>>>>>>>>>>>', request.body)
 		if(id !== {} && id !== null && id !== undefined){
 			try {
 				const userExist = await db.select('*').from(`users`).where({id: id})
