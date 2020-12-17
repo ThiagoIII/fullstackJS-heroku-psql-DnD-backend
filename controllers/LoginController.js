@@ -11,7 +11,8 @@ module.exports = {
 		}
 		try {
 			const dataLogin = await db.select('*').from('users').where({name: name})
-			if(dataLogin.length === 0){
+			if(dataLogin.length > 0){
+				console.log('datalogin ===============' , dataLogin)
 				const hash1 = dataLogin[0].hash
 				const isValid = bcrypt.compareSync(password, hash1) 
 				isValid 
