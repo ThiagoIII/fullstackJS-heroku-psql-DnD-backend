@@ -16,7 +16,7 @@ module.exports = {
 				const isValid = bcrypt.compareSync(password, hash1) 
 				isValid 
 					? response.json({id , name } = dataLogin[0]) 
-					: response.status(400).json('wrong password or user')  
+					: response.status(400).json('Password wrong, I will let it slip this time hm!')  
 			} else {
 				return response.status(400).json('user not found')
 			}
