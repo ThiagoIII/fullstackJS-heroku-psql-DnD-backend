@@ -15,7 +15,8 @@ module.exports = {
 				const hash1 = dataLogin[0].hash
 				const isValid = bcrypt.compareSync(password, hash1) 
 				if (isValid) {
-					return  response.status(200).json({id , name } = dataLogin[0]) 
+					let dataFiltered = ( ({ id, name }) => ({ id, name }) )(dataLogin[0]) // IIFE with destructuring and shorthand object assignment
+					return  response.status(200).json(dataFiltered) 
 				} else {
 					return response.status(400).json('Wrong password, I will let it slip this time hm! Now check it really carefully and remember to look at your surroundings when inserting your password!') 
 				}
