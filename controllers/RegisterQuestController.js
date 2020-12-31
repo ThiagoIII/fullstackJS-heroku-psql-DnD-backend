@@ -13,7 +13,7 @@ module.exports = {
         let newQuest = await db
             .select('*')
             .from('quests')
-            .where({ questname: questName })
+            .where({ questname: questname })
         if (newQuest.length > 0) {
             return response
                 .status(400)
@@ -24,13 +24,13 @@ module.exports = {
         try {
             await db(`quests`).insert({
                 id: id,
-                questname: questName,
-                quest: questHistory
+                questname: questname,
+                quest: questhistory
             })
             newQuest = await db
                 .select('*')
                 .from('quests')
-                .where({ questname: questName })
+                .where({ questname: questname })
             return response.json(newQuest)
         } catch (error) {
             return response
