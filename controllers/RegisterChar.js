@@ -10,18 +10,19 @@ module.exports = {
                     'Some of the inputs are empty, please, re-check and try again!'
                 )
         }
-        let newChar = await db
-            .select('*')
-            .from('quests')
-            .where({ charname: charname })
-        if (newChar.length > 0) {
-            return response
-                .status(400)
-                .json(
-                    'Uh! Sorry but it seems that this super epic hero or not char name its already taken! Would you be so kind to give it another go ? Think Chuck Norris + Agamemnon, like Chagamem Nonnis!'
-                )
-        }
         try {
+            let newChar = await db
+                .select('*')
+                .from('chars')
+                .where({ charname: charname })
+            if (newChar.length > 0) {
+                return response
+                    .status(400)
+                    .json(
+                        'Uh! Sorry but it seems that this super epic hero or not char name its already taken! Would you be so kind to give it another go ? Think Chuck Norris + Agamemnon, like Chagamem Nonnis!'
+                    )
+            }
+
             await db(`chars`).insert({
                 id: id,
                 charname: charname,

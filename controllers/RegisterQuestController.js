@@ -10,18 +10,19 @@ module.exports = {
                     'Some of the inputs are empty, please, re-check and try again!'
                 )
         }
-        let newQuest = await db
-            .select('*')
-            .from('quests')
-            .where({ questname: questname })
-        if (newQuest.length > 0) {
-            return response
-                .status(400)
-                .json(
-                    'Quest name already exists, come on get creative !! Its the adventure of your dreams!! Go nuts!!!!!! Be a happy squirrell :) '
-                )
-        }
         try {
+            let newQuest = await db
+                .select('*')
+                .from('quests')
+                .where({ questname: questname })
+            if (newQuest.length > 0) {
+                return response
+                    .status(400)
+                    .json(
+                        'Quest name already exists, come on get creative !! Its the adventure of your dreams!! Go nuts!!!!!! Be a happy squirrell :) '
+                    )
+            }
+
             await db(`quests`).insert({
                 id: id,
                 questname: questname,
